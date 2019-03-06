@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>v-band练习</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>书名:{{name}}</p>
+			<a v-bind:href="url">{{website}}</a>
+			<img :src="avatar" />
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					name: '魔姬 第一卷 觉醒',
+					website: '点击阅读',
+					url:'https://book.douban.com/subject/30362713/?icn=index-latestbook-subject',
+					avatar: 'https://img1.doubanio.com/view/subject/l/public/s30004147.jpg'
+				}
+			})
+		</script>
+	</body>
+</html>
