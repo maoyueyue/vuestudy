@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>关注列表界面</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			.containner {
+				width: 280px;
+				height: 415px;
+				margin-right: 30px;
+				border: 1px solid #EEE;
+				border-radius: 10px;
+				margin: 0 auto;
+				padding-top: 10px;
+							
+			}
+			
+			.card2{
+				text-align: left;
+				margin-top: 15px;
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 15px;
+				line-height: 25px;
+			}
+			
+			.touxiang {
+				width: 45px;
+				height: 45px;
+				float: left;
+				border-radius:45px;
+			}
+			
+			.yes {
+				color: chartreuse;
+				float: right;
+			}
+			
+			.no {
+				color: darkgrey;
+				float: right;
+			}
+			
+			.title {
+				margin-left: 10px;
+				color: darkgray;
+			}
+			
+			.message {
+				color: darkgray;
+				font-size: 14px;
+			}
+			
+			.change {
+				float: right;
+				color: darkgray;
+				margin-right: 10px;
+			}
+			
+			.check {
+				width: 260px;
+				height: 35px;
+				margin-top: 17px;
+				margin-left: 10px;
+				background-color: #EEEEEE;
+				border:1px solid #A9A9A9;
+				border-radius: 4px;
+				color: dimgray;
+			}
+			
+			.re {
+				width: 17px;
+				height: 14px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="containner">
+				<span class="title">推荐作者</span><span class="change">
+				<img class="re" src="img/work2_shua.png">换一批</span>
+				<div class="card" v-for="book in books">
+					<div class="card2">
+					<img class="touxiang" :src="book.cover">
+					<span>{{book.name}}</span>
+					<span class="yes" v-if="book.like">➕关注</span>
+					<span class="no" v-else >✔已关注</span><br/>
+					<span class="message">{{book.message}}</span>
+					</div>
+				</div>
+				<input type="button" class="check" value="查看全部 >" />
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+				show: true,
+				books: [{
+						name: '胡七筒',
+						cover: 'img/work2_1.png',
+						like: true,
+						message:'写了325k字·11k喜欢'
+					},
+					{
+						name: '汪波_偶遇科学',
+						cover: 'img/work2_2.jpg',
+						like: false,
+						message:'写了302.1k字·1.9k喜欢'
+					},
+					{
+						name: '梅拾璎',
+						cover: 'img/work2_3.jpg',
+						like: false,
+						message:'写了269.3k字·23.4k喜欢'
+					},
+					{
+						name: '徐林Grace',
+						cover: 'img/work2_4.jpg',
+						like: true,
+						message:'写了677.9k字·36.5k喜欢'
+					},
+					{
+						name: '行局版郡',
+						cover: 'img/work2_5.jpg',
+						like: true,
+						message:'写了535.1k字·51.8k喜欢'
+					}
+				],
+				}
+			})
+		</script>
+	</body>
+</html>

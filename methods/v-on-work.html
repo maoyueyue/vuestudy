@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>v-on指令练习4——取消关注练习</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<style type="text/css">
+			.likebutton1 {
+				width: 135px;
+				height: 50px;
+				margin-top: 20%;
+				margin-left: 45%;
+				background-color: #EEEEEE;
+				border:1px solid #ea6f5a;
+				border-radius: 30px;
+				color: #ea6f5a;
+				font-size: 18px;
+				outline: none;
+				
+			}
+			.likebutton2 {
+				width: 135px;
+				height: 50px;
+				margin-top: 20%;
+				margin-left: 45%;
+				background-color: #ea6f5a;
+				border:1px solid #A9A9A9;
+				border-radius: 30px;
+				color: white;
+				font-size: 18px;
+				outline: none;
+			}
+			.link {
+				cursor:pointer;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" v-show="like" class="likebutton1 link" @click="buttonclick1"><i class="icon-heart-empty"></i>&nbsp;喜欢丨{{likeNum}}</button>
+			<button type="button" v-show="like===false" class="likebutton2 link" @click="buttonclick2"><i class="icon-heart"></i>&nbsp;喜欢丨{{likeNum}}</button>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					like:false,
+					likeNum:'6'
+				},
+				methods: {
+					buttonclick1:function(){
+						this.like=!this.like;
+						this.likeNum +=1;
+					},
+					buttonclick2:function(){
+						this.like=!this.like;
+						this.likeNum -=1;
+					}
+					
+					
+				}
+			})
+		</script>
+	</body>
+</html>

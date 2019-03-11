@@ -2,28 +2,32 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>v-band练习</title>
+		<title>vue.js起步</title>
 		<!-- 通过CDN引入Vue.js -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style type="text/css">
+			#show:{
+				color: aqua;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="app">
-			<p>姓名:{{name}}</p>
-			<input type="text" v-bind:value="description" />
-			<a v-bind:href="url">{{website}}</a>
-			<img :src="avatar" />
+			<span id='show'>
+				<h2>{{message}}</h2>
+				<h3>{{name}},{{30}}岁</h3>
+			</span>
 		</div>
 		<script type="text/javascript">
-			var app = new Vue({
-				el: '#app',
-				data: {
-					name: '尤雨溪',
-					description: 'vue.js的创立者',
-					website: 'vue.js官网',
-					url:'http://doc.vue-js.com/',
-					avatar: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=c08a0c60a844ad342ebf8081e8996bc9/4afbfbedab64034f29596c8ba6c379310b551da2.jpg'
+			var app =new Vue({
+				el:'#app',
+				data:{
+					message:'vue.js',
+					name:'尤雨溪',
+					age:'30'
 				}
 			})
+			
 		</script>
 	</body>
 </html>

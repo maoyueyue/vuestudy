@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>vue.js 注册页面</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<style type="text/css">
+			body {
+				background-size: 100%, 100%;
+				background-image: url(img/back3.jpg);
+				background-repeat: no-repeat;
+			}
+
+			.signPlus {
+				width: 600px;
+				height: 400px;
+				margin-left: 1000px;
+				margin-top: 130px;
+				border-radius: 8px;
+				/* background-color: white; */
+				box-shadow: 0px 1px 1px 0px;
+			}
+
+			.sign1 {
+				padding-top: 15px;
+			}
+
+			.sign2 {
+				margin-left: 100px;
+				padding-top: 20px;
+			}
+
+
+			.addbtn {
+				border-bottom: 1px solid #1aa034;
+				color: #1aa034;
+				border-top: 0px;
+				border-left: 0px;
+				border-right: 0px;
+				outline: none;
+				background-color: transparent;
+				margin-top: 20px;
+
+			}
+
+			.userinput {
+				width: 400px;
+				height: 50px;
+				border-radius: 5px;
+				border: 1px solid #aaaaaa;
+				outline: none;
+				margin-top: 20px;
+				margin-left: 100px;
+				font-size: 23px;
+				text-indent: 25px;
+				color: black;
+				box-shadow: 0 5px 8px 0 rgba(24, 95, 255, .1);
+			}
+
+			.ifor {
+				width: 300px;
+				height: 40px;
+				border-radius: 5px;
+				border: 1px solid #aaaaaa;
+				outline: none;
+				margin-top: 20px;
+				font-size: 20px;
+				text-indent: 25px;
+				color: black;
+				box-shadow: 0 5px 8px 0 rgba(24, 95, 255, .1);
+			}
+
+			.ifor:hover {
+				border-color: black;
+			}
+
+			.ifor:focus {
+				border-color: #5ad4d4;
+			}
+
+			.userinput:hover {
+				border-color: black;
+			}
+
+			.userinput:focus {
+				border-color: #5ad4d4;
+			}
+
+			.sign2font {
+				font-size: 23px;
+				color: #696969;
+			}
+
+			h2 {
+				font-size: 40px;
+				color: #696969;
+				margin-left: 150px;
+			}
+			
+			h4 {
+				font-size: 30px;
+				color: #696969;
+				margin-left: 235px;
+				padding-top: 15px;
+			}
+			
+			.sign3font {
+				margin-left: 150px;
+				font-size: 20px;
+				color: #696969;
+			}
+
+			.sex {
+				width: 30px;
+				height: 15px;
+				margin-top: 20px;
+			}
+
+			.sexfont {
+				font-size: 20px;
+				color: #696969;
+			}
+
+			.cbtn {
+				width: 400px;
+				height: 55px;
+				border-radius: 4px;
+				margin-left: 100px;
+				margin-top: 20px;
+				outline: none;
+				box-shadow: 0 5px 8px 0 rgba(24, 95, 255, .1);
+				border: 1px #42abab solid;
+				background-color: #41a8a9;
+				color: #fff;
+				font-size: 24px;
+			}
+
+			.cbtn:hover {
+				background-color: #369594;
+			}
+
+			.btn1 {
+				float: right;
+				margin-right: 100px;
+			}
+
+			.btn2 {
+				float: left;
+
+			}
+
+			.car {
+				cursor: pointer;
+			}
+		</style>
+
+	</head>
+	<body>
+		<h2>vue.js 注册页面</h2>
+
+		<div id="app">
+			<div class="signPlus">
+				<div class="sign12" v-show="see2">
+					<div class="sign1" v-show="see">
+						<input type="text" class="userinput" v-model="account" placeholder="账&#12288;&#12288;号" /><br />
+						<input type="password" class="userinput" v-model="password1" placeholder="密&#12288;&#12288;码" /><br />
+						<input type="password" v-model="password2" class="userinput" placeholder="确认密码" /><br />
+						<button type="button" class="btn1 addbtn car" @click="buttonclick1">补充具体资料 ></button><br />
+						<button type="button" class="cbtn car" @click="buttonclick3">立即注册</button>
+					</div>
+
+					<div class="sign2" v-show="see===false">
+						<span class="sign2font">姓名&#12288;</span><input type="text" class="ifor" v-model="username" /><br />
+						<span class="sign2font">性别&#12288;</span><input type="radio" class="sex" id="male" value="男" v-model="usersex"><label class="sexfont"
+						 for="male">男</label>
+						<input type="radio" class="sex" id="female" value="女" v-model="usersex"><label class="sexfont" for="female">女</label><br />
+						<span class="sign2font">年龄&#12288;</span><input type="text" class="ifor" v-model="userage" /><br />
+						<span class="sign2font">爱好&#12288;</span><input type="text" class="ifor" v-model="userhobby" /><br />
+						<span class="sign2font">星座&#12288;</span><input type="text" class="ifor" v-model="constellation" /><br />
+						<button type="button" class="btn2 addbtn car" @click="buttonclick2">返回</button>
+					</div>
+				</div>
+
+				<div class="sign3" v-show="see2===false">
+					<h4>注册信息</h4>
+					<span class="sign3font">账号：{{account}}</span><br/><br/>
+					<span class="sign3font">姓名：{{username}}</span><br/><br/>
+					<span class="sign3font">性别：{{usersex}}</span><br/><br/>
+					<span class="sign3font">年龄：{{userage}}</span><br/><br/>
+					<span class="sign3font">爱好：{{userhobby}}</span><br/><br/>
+					<span class="sign3font">星座：{{constellation}}</span><br/><br/>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					account: '',
+					password1: '',
+					password2: '',
+					see: true,
+					see2: true,
+					username: '',
+					usersex: '',
+					userage: '',
+					userhobby: '',
+					constellation: ''
+				},
+				methods: {
+					buttonclick1: function() {
+						this.see = !this.see;
+					},
+					buttonclick2: function() {
+						this.see = !this.see;
+					},
+					buttonclick3: function() {
+						this.see2 = !this.see2;
+					},
+				}
+			})
+		</script>
+	</body>
+</html>
