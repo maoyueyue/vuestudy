@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" @click="show1">调用methods点击</button>
+			<button type="button" @click="show2()">调用computed点击</button>
+		</div>
+		<script type="text/javascript">
+			var app =new Vue({
+				el:'#app',
+				data:{
+					name1:'methods',
+					name2:'这是vue.js的computed计算属性练习'
+				},
+				methods:{
+					show1:function(){
+						console.log(this.name1);
+					}
+				},
+				computed:{
+					show2:function(){
+						console.log(this.name2);
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
