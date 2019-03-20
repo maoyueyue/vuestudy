@@ -2,80 +2,52 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Vue.js——点击搜索按钮进行页面搜索</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>Vue.js computed练习-搜索页面的实现</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<style type="text/css">
 			.container {
 				width: 90%;
 				margin: 0 auto;
 			}
-			.box {
-				display: flex;
-				align-items: center;
-				height: 35px;
-				padding-top: 5px;
+
+			.input-box {
+				width: 50%;
+				height: 25px;
 				margin-bottom: 10px;
 			}
-			.input-box {
-				flex: 1 1 80%;
-				width: 100%;
-				height: 80%;
-			}
-			.search-btn {
-				flex: 1 1 20%;
-				height: 100%;
-				background-color: #87CEFA;
-				border: none;
-				outline: none;
-				/* 阴影 */
-				box-shadow: 2px 5px 10px #aaa;
-			}
+
 			.item {
 				display: flex;
-				height: 70px;
+				height: 100px;
 				border: 1px solid #eee;
 				border-radius: 8px;
 				margin-bottom: 8px;
-				padding: 5px;
-				box-shadow: 2px 5px 10px #ddd;
 			}
+
 			.item-title {
-				flex: 1 1 85%;
+				flex: 1 1 80%;
 			}
+
 			.item-thumbnail {
 				flex: 1 1 20%
 			}
+
 			.item-thumbnail img {
 				width: 100%;
 				height: 100%;
-				border-radius: 5px;
-			}
-			a {
-				color: #000;
-				text-decoration: none;
-			}
-			a:hover {
-				text-decoration: underline;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="app">
 			<div class="container">
-				<div class="box">
-					<input type="text" v-model="searchString" placeholder="请输入" class="input-box" />
-					<button type="button" class="search-btn" @click="handleSearch">搜索</button>
-				</div>
-
-				<div class="item" v-for="article in articles_array">
+				<input type="text" v-model="searchString" placeholder="请输入" class="input-box" />
+				<div class="item" v-for="article in filteredArticles">
 					<a :href="article.url" class="item-title">
 						{{article.title}}
 					</a>
 					<div class="item-thumbnail">
-						<a :href="article.url" class="item-title">
-							<img :src="article.image">
-						</a>
+						<img :src="article.image">
 					</div>
 				</div>
 			</div>
@@ -111,25 +83,27 @@
 							"url": "https://www.jianshu.com/p/0a6a61b0933c",
 							"image": "https://upload-images.jianshu.io/upload_images/3525704-c7293758fc59e56b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/960/format/webp"
 						}
-					],
-					articles_array: []  //该变量用来存放搜索结果
+					]
 				},
-				created: function() {
-					this.articles_array = this.articles;  //初始化加载页面的时候,先存放全部数据
-				},
-				methods: {
-					handleSearch: function() {
-						var searchString = this.searchString;
-						var len = this.articles.length;
+				computed: {
+					// 计算函数，匹配搜索
+					filteredArticles: function() {
+						var articles_array = this.articles,
+							searchString = this.searchString;
+						//搜索关键词为空,则返回原始数据集
 						if (!searchString) {
-							this.articles_array = this.articles;//关键词为空,返回全部数据
+							return articles_array;
 						}
+						//搜索关键词去除无用空格,转换为小写
 						searchString = searchString.trim().toLowerCase();
-						this.articles_array = this.articles_array.filter(function(item) {
-							if (item.title.toLowerCase().indexOf(searchString) != -1) {
+						//过滤数组中每个元素,如果
+						articles_array = articles_array.filter(function(item) {
+							if (item.title.toLowerCase().indexOf(searchString) !== -1) {
 								return item;
 							}
 						})
+						// 返回转化后的数组
+						return articles_array;;
 					}
 				}
 			})

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>关注列表界面</title>
+		<!-- 通过CDN引入Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+		<style type="text/css">
+			.containner {
+				width: 400px;
+				height: 590px;
+				margin: 0 auto;
+				border: 1px solid #EEE;
+				margin-top: 10px;
+				background-color: #05b9de;
+
+			}
+
+			.sign {
+				width: 360px;
+				height: 490px;
+				margin: 0 auto;
+				background-color: white;
+				margin-top: 10px;
+
+			}
+
+			.card {
+				text-align: left;
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 15px;
+				line-height: 23px;
+			}
+
+			.tb {
+				margin-left: 20px;
+				margin-top: 20px;
+				width: 45px;
+			}
+
+			.top {
+				font-size: 23px;
+				margin-left: 10px;
+				color: white;
+				font-weight:bold;
+			}
+
+			.search {
+				margin-top: 10px;
+				margin-left: 10px;
+				width: 340px;
+				height: 30px;
+				text-indent: 10px;
+				border-radius: 2px;
+				outline: none;
+				border:0px;
+				background-color: #EEEEEE;
+			}
+			
+			.search:hover {
+				border: 1px solid black;
+			}
+
+			.search:focus {
+				border-top: 0px;
+				border-left: 0px;
+				border-right: 0px;
+				border-color: blue;
+			}
+
+			.message {
+				margin-left: 10px;
+			}
+
+			.touxiang {
+				width: 65px;
+				height: 65px;
+				float: left;
+			}
+			.topline {
+				width: 340px;
+			}
+
+			.teacher {
+				font-size: 13px;
+				color: darkgray;
+			}
+			
+			.ip {
+				font-size: 23px;
+				color: white;
+				margin-left:180px ;
+			}
+			.tp {
+				font-size: 20px;
+				color: white;
+				margin-left: 15px;
+				font-weight:bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="containner">
+				<img class="tb" src="img/tb.png" />
+				<span class="top">班课</span><i class="icon-plus ip"></i><span class="tp">投屏</span><br />
+				<div class="sign">
+					<input class="search"  v-model="searchString" type="text" placeholder="搜索" />
+					<hr class="topline">
+					<div class="card" v-for="book in filteredArticles">
+						<img class="touxiang" :src="book.cover">
+						<span class="message">{{book.lesson}}</span><br />
+						<span class="message">{{book.lessonname}}</span><br />
+						<span class="message teacher">{{book.teacher}}</span>
+						<hr>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					searchString: "",
+					books: [{
+							"lesson":"软件1721",
+							"cover": "img/cover1.jpg",
+							"lessonname": "轻量级框架技术",
+							"teacher": "许莫淇  学校课表班课"
+						},
+						{
+							"lesson": "软件1721",
+							"cover": "img/cover2.jpg",
+							"lessonname": "web前端框架技术",
+							"teacher": "许莫淇  学校课表班课"
+						},
+						{
+							"lesson": "软件1721",
+							"cover": "img/cover3.jpg",
+							"lessonname": "web前端技术",
+							"teacher": "李中科  学校课表班课"
+						},
+						{
+							"lesson": "软件1721",
+							"cover": "img/cover4.png",
+							"lessonname": "毛概",
+							"teacher": "葛小凡  学校课表班课"
+						},
+						{
+							"lesson": "软件1721",
+							"cover": "img/cover5.jpg",
+							"lessonname": "web应用开发",
+							"teacher": "王萍  学校课表班课"
+						}
+					]
+				},
+				computed: {
+					// 计算函数，匹配搜索
+					filteredArticles: function() {
+						var articles_array = this.books,
+							searchString = this.searchString;
+						//搜索关键词为空,则返回原始数据集
+						if (!searchString) {
+							return articles_array;
+						}
+						//搜索关键词去除无用空格,转换为小写
+						searchString = searchString.trim().toLowerCase();
+						//过滤数组中每个元素,如果
+						articles_array = articles_array.filter(function(card) {
+							if (card.lessonname.toLowerCase().indexOf(searchString) !== -1||card.teacher.toLowerCase().indexOf(searchString) !== -1||card.lesson.toLowerCase().indexOf(searchString) !== -1) {
+								return card;
+							}
+						})
+						// 返回转化后的数组
+						return articles_array;;
+					}
+				}
+
+			})
+		</script>
+	</body>
+</html>
